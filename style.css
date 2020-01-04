@@ -1,0 +1,61 @@
+body {
+  padding: 4vh 4vw;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  display: grid;
+  grid-template: "   .    "
+                 "timeline" 20%
+                 "   .    "
+}
+
+#timeline {
+  grid-area: timeline;
+  display: flex;
+  align-items: center;
+  justify-content :center;
+}
+
+#line {
+  background: #000;
+  border-radius: 1000px;
+  height: 1.4vh;
+  width: 92vw;
+}
+.arrow {
+  background: #000;
+  right: 4vw;
+  transform: rotate(35deg) translate(.1vw, .17vw);
+  transform-origin: right;
+  position: absolute;
+  height: 1.4vh;
+  width: 9vh;
+  border-radius: 1000px;
+}
+.arrow:last-child {
+  transform: rotate(-35deg) translate(.1vw, -.17vw);
+}
+
+@media (orientation: portrait) {
+  body {
+    grid-template: " . timeline . "
+                   / auto 20% auto
+  }
+  #line {
+    height: 92vh;
+    width: 1.4vw;
+  }
+  .arrow {
+    right: unset;
+    bottom: 4vh;
+    transform: rotate(35deg) translate(.17vh, .1vh);
+    transform-origin: bottom;
+    position: absolute;
+    height: 9vw;
+    width: 1.4vw;
+    border-radius: 1000px;
+  }
+  .arrow:last-child {
+    transform: rotate(-35deg) translate(-.17vh, .1vh);
+  }
+}
