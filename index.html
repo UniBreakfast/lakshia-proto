@@ -11,6 +11,10 @@
     <div id="line">
       <div class="arrow"></div>
       <div class="arrow"></div>
+      <script>
+        line.innerHTML += [...Array(24).keys()].reduce((html, i)=>
+          html+`<div class=mark style=--turn:${i} data-turn=${i+1} data-week=${(i+1)*2}></div>`,'')
+      </script>
     </div>
 
   </section>

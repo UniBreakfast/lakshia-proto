@@ -4,42 +4,62 @@ body {
   box-sizing: border-box;
   margin: 0;
   display: grid;
-  grid-template: "   .    "
-                 "timeline" 20%
-                 "   .    "
+  grid-template: "   .    " "timeline" 20% "   .    "
 }
 
 #timeline {
   grid-area: timeline;
   display: flex;
   align-items: center;
-  justify-content :center;
+  justify-content: center;
+}
+
+#line, .arrow, .mark {
+  background: #000;
+  border-radius: 99vw;
+  height: 1.4vh;
 }
 
 #line {
-  background: #000;
-  border-radius: 1000px;
-  height: 1.4vh;
   width: 92vw;
 }
+
 .arrow {
-  background: #000;
   right: 4vw;
-  transform: translateY(.2vw) rotate(35deg);
+  transform: translateY(.15vw) rotate(35deg);
   transform-origin: right;
   position: absolute;
-  height: 1.4vh;
   width: 9vh;
-  border-radius: 99vw;
 }
-.arrow:last-child {
-  transform: translateY(-.2vw) rotate(-35deg);
+
+.arrow:first-child {
+  transform: translateY(-.15vw) rotate(-35deg);
 }
+
+.mark {
+  position: absolute;
+  width: 6vh;
+  height: .7vh;
+  transform: translate(calc(var(--turn)*3.4vw), 45%) rotate(90deg);
+}
+
+.mark:before, .mark:after {
+  content: attr(data-turn);
+  transform: translate(5.4vh, -1.1vh) rotate(-90deg);
+  display: block;
+  text-align: center;
+  position: absolute;
+  width: 2em;
+  font: bold 2.1vh Comic Sans MS, Comic Sans;
+}
+
+.mark:after {
+  content: attr(data-week);
+  transform: translate(-3.6vh, -1.1vh) rotate(-90deg);}
 
 @media (orientation: portrait) {
   body {
-    grid-template: " . timeline . "
-                   / auto 20% auto
+    grid-template: " . timeline . " / auto 20% auto
   }
   #line {
     height: 92vh;
@@ -48,12 +68,27 @@ body {
   .arrow {
     right: unset;
     bottom: 4vh;
-    transform: translateX(-.2vh) rotate(35deg);
+    transform: translateX(-.15vh) rotate(35deg);
     transform-origin: bottom;
     height: 9vw;
     width: 1.4vw;
   }
-  .arrow:last-child {
-    transform: translateX(.2vh) rotate(-35deg);
+  .arrow:first-child {
+    transform: translateX(.15vh) rotate(-35deg);
+  }
+  .mark {
+    position: absolute;
+    width: .7vw;
+    height: 6vw;
+    transform: translate(45%, calc(var(--turn)*3.4vh)) rotate(90deg);
+  }
+  .mark:before, .mark:after {
+    font-size: 2.4vw;
+    transform: translate(-2.3vw, 6.4vw) rotate(-90deg);
+    text-align: left;
+  }
+  .mark:after {
+    transform: translate(-2.3vw, -3.7vw) rotate(-90deg);
+    text-align: right;
   }
 }
