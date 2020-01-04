@@ -25,15 +25,15 @@ body {
 .arrow {
   background: #000;
   right: 4vw;
-  transform: rotate(35deg) translate(.1vw, .17vw);
+  transform: translateY(.2vw) rotate(35deg);
   transform-origin: right;
   position: absolute;
   height: 1.4vh;
   width: 9vh;
-  border-radius: 1000px;
+  border-radius: 99vw;
 }
 .arrow:last-child {
-  transform: rotate(-35deg) translate(.1vw, -.17vw);
+  transform: translateY(-.2vw) rotate(-35deg);
 }
 
 @media (orientation: portrait) {
@@ -48,14 +48,12 @@ body {
   .arrow {
     right: unset;
     bottom: 4vh;
-    transform: rotate(35deg) translate(.17vh, .1vh);
+    transform: translateX(-.2vh) rotate(35deg);
     transform-origin: bottom;
-    position: absolute;
     height: 9vw;
     width: 1.4vw;
-    border-radius: 1000px;
   }
   .arrow:last-child {
-    transform: rotate(-35deg) translate(-.17vh, .1vh);
+    transform: translateX(.2vh) rotate(-35deg);
   }
 }
