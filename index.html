@@ -5,18 +5,58 @@
   <title>Игра Лакшиа (прототип)</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="body">
   <script src="script.js"></script>
+  <header id="goal">Сформулированная игроком цель достигнуть чего-то, чего он собирается достигнуть в горизонте до года</header>
   <section id="timeline">
     <div id="line">
       <div class="arrow"></div>
       <div class="arrow"></div>
       <script>
         line.innerHTML += [...Array(24).keys()].reduce((html, i)=>
-          html+`<div class=mark style=--turn:${i} data-turn=${i+1} data-week=${(i+1)*2}></div>`,'')
+          html+`<div class=mark style=--turn:${i} data-turn=${i+1}
+            data-week=${(i+1)*2}></div>`,'')
       </script>
     </div>
 
   </section>
+  <div id="glass">
+  <script>
+    const deckShadow =(pos, cards)=> [...Array(cards/2|0).keys()]
+      .map(i => pos<4? [2, .65, -.65 , -2][pos]*.2*i+'vh '+-.2*i+'vh 0 '+-(i/15)
+        .toFixed(2)+'vh' : .2*i+'vw '+[1.4, .65, -.65 , -1.4][pos-4]*.2*i+
+          'vw 0 '+-(i/15).toFixed(2)+'vw').join(', ')
+
+    body.append(...'goalSet|ЦЕЛЕПОЛАГАНИЕ,goalGet|ЦЕЛЕДОСТИЖЕНИЕ,circ|ОБСТОЯТЕЛЬСТВА,quote|ЦИТАТЫ'.split(',').map((pair, i) => {
+
+      const [id, label] = pair.split('|'),
+            div = document.createElement('div'),
+            deck = document.createElement('div')
+      Object.assign(div, {id: id+'Deck', className: 'deck'})
+      Object.assign(deck, {innerText: label, className: 'card'})
+      !(div.upd = cards => {
+        div.style.setProperty('--hor', deckShadow(i, cards))
+        div.style.setProperty('--vert', deckShadow(i+4, cards))
+      })(36)
+      div.append(deck)
+      return div
+    }))
+  </script>
+
+    <!-- <script> glass.className = 'active' </script> -->
+  </div>
+  <div id="off">
+    <div id="timelineIntro" class="message land-top port-left">
+      <h3>Линия времени, ходы, недели</h3>
+      <p>Это линия времени, на ней вы видите ходы, недели, бла-бла-бла...</p>
+      <!-- <script> glass.append(timelineIntro) </script> -->
+    </div>
+    <div id="setGoal" class="message">
+      <h3>Выберем вашу цель, с которой будем играть</h3>
+      <p>Запишите формулировку, на которую мы будем опираться в течении этой игры. Вы сможете её уточнить в любой момент.</p>
+      <textarea id="taGoal"></textarea>
+      <!-- <script> glass.append(setGoal) </script> -->
+    </div>
+  </div>
 </body>
 </html>
