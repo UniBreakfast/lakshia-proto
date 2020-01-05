@@ -35,8 +35,8 @@
       Object.assign(div, {id: id+'Deck', className: 'deck'})
       Object.assign(deck, {innerText: label, className: 'card'})
       !(div.upd = cards => {
-        div.style.setProperty('--hor', deckShadow(i, cards))
-        div.style.setProperty('--vert', deckShadow(i+4, cards))
+        deck.style.setProperty('--hor', deckShadow(i, cards))
+        deck.style.setProperty('--vert', deckShadow(i+4, cards))
       })(36)
       div.append(deck)
       return div
