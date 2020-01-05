@@ -5,8 +5,8 @@ body {
   padding: 4vh 4vw;
   box-sizing: border-box;
   font: bold 2.4vh Comic Sans MS, Comic Sans;
-  grid-template: "  goal     goal     goal     goal  "
-                 "   .        .        .        .    "
+  grid-template: "  goal     goal     goal     goal  " auto
+                 "   .       open      .        .    " auto
                  "timeline timeline timeline timeline" 20%
                  " sdeck    gdeck    cdeck    qdeck  " 40%
                  /  1fr      1fr      1fr      1fr
@@ -31,6 +31,9 @@ h1,h2,h3,h4,h5,h6,p {
   grid-area: qdeck;
   z-index: -1;
 }
+#openCard {
+  grid-area: open;
+}
 .deck {
   display: flex;
   align-items: center;
@@ -47,6 +50,51 @@ h1,h2,h3,h4,h5,h6,p {
   align-items: center;
   justify-content: center;
   box-shadow: var(--hor);
+}
+
+
+@keyframes shadow
+{
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  10% {
+    box-shadow: 0px 0px 15px 2px yellow;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.animate, .animate>* {
+  transition: all 1.5s;
+  animation: shadow 2.5s infinite;
+}
+
+#movingCard {
+  position: absolute;
+  perspective: 1000px;
+}
+
+#cardWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.front {
+  position: absolute;
+  backface-visibility: hidden;
+  
+}
+.back {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.back, .flipped {
+  transform: rotateY(180deg);
 }
 
 #timeline {
@@ -140,7 +188,7 @@ h1,h2,h3,h4,h5,h6,p {
   body {
     font-size: 2.3vw;
     grid-template: "sdeck timeline goal" 1fr
-                   "gdeck timeline  .  " 1fr
+                   "gdeck timeline open" 1fr
                    "cdeck timeline  .  " 1fr
                    "qdeck timeline  .  " 1fr
                    / 40%    20%    40%
