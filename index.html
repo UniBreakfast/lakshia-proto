@@ -5,12 +5,15 @@
   <meta charset="UTF-8">
   <title>Игра Лакшиа (прототип)</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body id="body">
-  <script src="script.js" defer></script>
   <header id="goal">Сформулированная игроком цель достигнуть чего-то, чего он собирается достигнуть в горизонте до года
   </header>
+  <div id="openCard" class="card">
+    !!Текст карточки
+  </div>
   <section id="timeline">
     <div id="line">
       <div class="arrow"></div>
@@ -47,9 +50,6 @@
 
   <div id="glass">
     <script> glass.className = 'active' </script>
-  </div>
-  <div id="openCard" class="card">
-    !!Текст карточки
   </div>
   <div id="off">
     <div id="movingCard">
