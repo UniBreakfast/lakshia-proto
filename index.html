@@ -11,7 +11,7 @@
 <body id="body">
   <header id="goal">Сформулированная игроком цель достигнуть чего-то, чего он собирается достигнуть в горизонте до года
   </header>
-  <div id="openCard" class="card">
+  <div id="openCard" class="card bigCard hidden">
     !!Текст карточки
   </div>
   <section id="timeline">
@@ -27,11 +27,6 @@
 
   </section>
   <script>
-    const deckShadow = (pos, cards) => [...Array(cards / 2 | 0).keys()]
-      .map(i => pos < 4 ? [2, .65, -.65, -2][pos] * .2 * i + 'vh ' + -.2 * i + 'vh 0 ' + -(i / 15)
-        .toFixed(2) + 'vh' : .2 * i + 'vw ' + [1.4, .65, -.65, -1.4][pos - 4] * .2 * i +
-        'vw 0 ' + -(i / 15).toFixed(2) + 'vw').join(', ')
-
     body.append(...'goalSet|ЦЕЛЕПОЛАГАНИЕ,goalGet|ЦЕЛЕДОСТИЖЕНИЕ,circ|ОБСТОЯТЕЛЬСТВА,quote|ЦИТАТЫ'.split(',').map((pair, i) => {
 
       const [id, label] = pair.split('|'),
@@ -39,23 +34,23 @@
         deck = document.createElement('div')
       Object.assign(div, { id: id + 'Deck', className: 'deck' })
       Object.assign(deck, { innerText: label, className: 'card' })
-      !(div.upd = cards => {
+      addEventListener('load', ()=> (div.upd = cards => {
         deck.style.setProperty('--hor', deckShadow(i, cards))
-        deck.style.setProperty('--vert', deckShadow(i + 4, cards))
-      })(36)
+        deck.style.setProperty('--vert', deckShadow(i+5, cards))
+      })(36))
       div.append(deck)
       return div
     }))
   </script>
 
   <div id="glass">
-    <script> glass.className = 'active' </script>
+    <!-- <script> glass.className = 'active' </script> -->
   </div>
   <div id="off">
     <div id="movingCard">
       <div id="cardWrap">
         <div class="card front">Заголовок</div>
-        <div class="card back">Текст карточки</div>
+        <div class="card back bigCard">Текст карточки</div>
       </div>
       <!-- <script> glass.append(movingCard) </script> -->
 
@@ -73,6 +68,7 @@
       <textarea id="taGoal"></textarea>
       <!-- <script> glass.append(setGoal) </script> -->
     </div>
+    <div id="bigCard" class="bigCard"></div>
   </div>
 </body>
 
