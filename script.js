@@ -39,7 +39,8 @@ function flipCard(deck) {
     const { x, y, width, height } = openCard.getBoundingClientRect()
     assign(movingCard.style, {left: x-(vert? width/2.02 : width/80)+'px',
                               top: y-(vert? height/80 : height/2.02)+'px'})
-    cardWrap.ontransitionend = () => {
+    cardWrap.ontransitionend =()=> {
+      cardWrap.ontransitionend = null
       openCard.innerText = back.innerText
       off.append(movingCard)
       openCard.classList.remove('hidden')
