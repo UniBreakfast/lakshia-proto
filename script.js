@@ -4,7 +4,7 @@ const decks = [goalSetDeck, goalGetDeck, circDeck, quoteDeck]
 const text = [['a', 'b', 'c'], [], [], []]
 
 const deckShadow =
-  (pos, cards) => [...Array(cards).keys()] .map(i => {
+  (pos, cards) => [...Array(cards).keys()].map(i => {
     if (pos==4) return '0 ' + .1*i + 'vh 0 ' + -(i/30).toFixed(2) + 'vh'
     if (pos==9) return -.1*i + 'vw 0 0 ' + -(i/30).toFixed(2) + 'vw'
     if (pos<4) return [2, .65, -.65, -2][pos]*.1*i + 'vh ' +
@@ -54,12 +54,17 @@ function flipCard(deck) {
 // simulation
 let count = [36, 36, 36, 36, 0]
 openCard.onclick =()=> {
-  deck = Math.random()*(4)|0
-  decks[deck].upd(count[deck]? --count[deck] : 1)
+  if (!Math.max(...count.slice(0,4))) return
+  do {
+    var deck = Math.random()*4|0
+  } while (!count[deck])
+  decks[deck].upd(count[deck]? --count[deck] : 0)
+  if (!count[deck]) setTimeout(()=> decks[deck].classList.add('hidden'), 0)
   flipCard(deck)
 }
 decks.forEach(deck => deck.onclick = i => {
   i = decks.indexOf(deck)
-  decks[i].upd(count[i]? --count[i] : deck.classList.add('hidden') || 0)
+  decks[i].upd(count[i]? --count[i] : 0)
+  if (!count[i]) setTimeout(()=> deck.classList.add('hidden'), 0)
   flipCard(i)
 })
