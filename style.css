@@ -39,18 +39,27 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   justify-content: center;
   box-shadow: var(--hor);
 }
+.upCard {
+  width: 40vh;
+  height: 56vh;
+}
 .bigCard {
   height: 26vh;
   width: 36.4vh;
 }
+.biggerCard {
+  height: 52vh;
+  width: 72.8vh;
+}
 
 @keyframes glow {
   0% { box-shadow: none }
-  5% { box-shadow: 0 0 15px 3px yellow }
+  5% { box-shadow: 0 0 15px 5px yellow }
+  75% { box-shadow: 0 0 15px 3px yellow }
   100% { box-shadow: none }
 }
 .animate, .animate>* {
-  transition: all 1.5s;
+  transition: all 1.5s ease-in-out;
   animation: glow 2.5s infinite;
 }
 
@@ -168,11 +177,19 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
     font-size: 2.4vw;
     box-shadow: var(--vert);
   }
+  .upCard {
+    width: 58vw;
+    height: 38vw;
+  }
   .bigCard {
     height: 39.2vw;
     width: 28vw;
   }
-    #line {
+  .biggerCard {
+    height: 78.4vw;
+    width: 56vw;
+  }
+  #line {
     height: 92vh;
     width: 1.4vw;
   }
