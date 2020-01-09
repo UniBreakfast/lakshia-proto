@@ -1,7 +1,7 @@
 const { assign } = Object
 
 const decks = [goalSetDeck, goalGetDeck, circDeck, quoteDeck]
-const text = [['a', 'b', 'c'], [], [], []]
+const texts = [[], [], [], [], []]
 
 const deckShadow =
   (pos, cards) => [...Array(cards).keys()].map(i => {
@@ -24,7 +24,7 @@ function flipCard(deck) {
   glass.classList.add('active')
   glass.append(movingCard)
   front.innerText = decks[deck].children[0].innerText
-  back.innerText = text[deck].pop()
+  back.innerText = texts[deck].pop().text
   movingCard.classList.remove('animate')
   cardWrap.classList.remove('flipped', 'animate')
   const { x, y } = decks[deck].children[0].getBoundingClientRect()
@@ -68,3 +68,32 @@ decks.forEach(deck => deck.onclick = i => {
   if (!count[i]) setTimeout(()=> deck.classList.add('hidden'), 0)
   flipCard(i)
 })
+
+const
+  main = async ()=> {
+    await loadCards()
+    console.log('cards loaded')
+  },
+
+  loadCards = async ()=> {
+    const
+      nl = lines => nl.is || (nl.is = lines.includes('\r\n')? '\r\n' : '\n'),
+      getLines = arr => lines =>
+        arr.push(...lines.split(nl(lines)).map(line => ({text: line}))),
+      process = [getLines(texts[0]), getLines(texts[1]),
+        lines => lines.split(nl(lines).repeat(2)).forEach((part, i) =>
+          texts[2].push(...part.split(nl(lines)).map(line =>
+            ({text: line, move: [1, 2, -1, -2][i]})))),
+        lines => {
+          lines = lines.split(nl(lines))
+          for (let i=0; i<lines.length; i+=2)
+            texts[3].push({text: lines[i], author: lines[i+1]})
+        },
+        getLines(texts[4])
+      ]
+    await Promise.all('goalSet, goalGet, circ, quote, reflect'.split(', ')
+      .map((name, i) => fetch(`${i} ${name}.txt`).then(resp => resp.text())
+        .then(process[i])))
+  }
+
+main()
