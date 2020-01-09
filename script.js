@@ -24,7 +24,10 @@ function flipCard(deck) {
   glass.classList.add('active')
   glass.append(movingCard)
   front.innerText = decks[deck].children[0].innerText
-  back.innerText = texts[deck].pop().text
+  const card = texts[deck].pop()
+  if (card.author)
+    back.innerHTML = `"${card.text}"<p>- ${card.author} &nbsp;</p>`
+  else back.innerText = card.text
   movingCard.classList.remove('animate')
   cardWrap.classList.remove('flipped', 'animate')
   const { x, y } = decks[deck].children[0].getBoundingClientRect()
@@ -41,7 +44,7 @@ function flipCard(deck) {
                               top: y-(vert? height/80 : height/2.02)+'px'})
     cardWrap.ontransitionend =()=> {
       cardWrap.ontransitionend = null
-      openCard.innerText = back.innerText
+      openCard.innerHTML = back.innerHTML
       off.append(movingCard)
       openCard.classList.remove('hidden')
       glass.classList.remove('active')
