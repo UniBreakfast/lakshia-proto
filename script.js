@@ -24,7 +24,7 @@ function flipCard(deck) {
   glass.classList.add('active')
   glass.append(movingCard)
   front.innerText = decks[deck].children[0].innerText
-  const card = texts[deck].pop()
+  const card = texts[deck].splice(Math.random()*texts[deck].length|0, 1)[0]
   if (card.author)
     back.innerHTML = `"${card.text}"<p>- ${card.author} &nbsp;</p>`
   else back.innerText = card.text
