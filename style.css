@@ -182,6 +182,7 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   .card {
     width: 29vw;
     height: 19vw;
+    padding: 2vw;
     font-size: 2.4vw;
     box-shadow: var(--vert);
   }
@@ -190,12 +191,14 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
     height: 38vw;
   }
   .bigCard {
-    height: 39.2vw;
     width: 28vw;
+    height: 39.2vw;
+    font-size: 2vw;
   }
   .biggerCard {
-    height: 78.4vw;
     width: 56vw;
+    height: 78.4vw;
+    font-size: 4vw;
   }
   #line {
     height: 92vh;
