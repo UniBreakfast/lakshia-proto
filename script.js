@@ -100,3 +100,5 @@ const
   }
 
 main()
+
+console.log("https://unibreakfast.github.io/lakshia-proto/ or http://127.0.0.1:5500/")
