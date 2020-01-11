@@ -44,10 +44,6 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   justify-content: center;
 }
 .card>p { align-self: flex-end }
-.upCard {
-  width: 40vh;
-  height: 56vh;
-}
 .bigCard {
   height: 26vh;
   width: 36.4vh;
@@ -55,9 +51,7 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   flex-direction: column;
 }
 .biggerCard {
-  height: 52vh;
-  width: 72.8vh;
-  font-size: 4.2vh;
+  transform: scale(2.2);
 }
 
 .animate, .animate>* {
@@ -186,19 +180,10 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
     font-size: 2.4vw;
     box-shadow: var(--vert);
   }
-  .upCard {
-    width: 58vw;
-    height: 38vw;
-  }
   .bigCard {
     width: 28vw;
     height: 39.2vw;
     font-size: 2vw;
-  }
-  .biggerCard {
-    width: 56vw;
-    height: 78.4vw;
-    font-size: 4vw;
   }
   #line {
     height: 92vh;
