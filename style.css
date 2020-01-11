@@ -34,7 +34,7 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   display: flex;
   cursor: pointer;
   font-size: 1.7vh;
-  border: 1px solid;
+  border: .2vmin solid;
   background: white;
   text-align: center;
   align-items: center;
@@ -82,6 +82,9 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
 }
 .back {
   transform: rotateY(180deg) scale(0.7) rotateZ(90deg);
+}
+.backUp {
+  transform: rotateY(180deg) scale(1.2) rotateZ(90deg);
 }
 .flipped {
   transform: rotateY(180deg) scale(1.428) rotateZ(90deg);
@@ -184,6 +187,9 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
     width: 28vw;
     height: 39.2vw;
     font-size: 2vw;
+  }
+  .backUp {
+    transform: rotateY(180deg) scale(1.1) rotateZ(90deg);
   }
   #line {
     height: 92vh;

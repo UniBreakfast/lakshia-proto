@@ -33,12 +33,11 @@ function flipCard(deck) {
   const { x, y } = decks[deck].children[0].getBoundingClientRect()
   assign(movingCard.style, {left: x+'px', top: y+'px'})
   setTimeout(() => {
-    // front.classList.add('upCard')
-    // back.classList.add('biggerCard')
-    movingCard.classList.add('animate', 'biggerCard')
+    back.classList.add('backUp')
     cardWrap.classList.add('flipped', 'animate')
-    setTimeout(()=> (movingCard.classList.remove('biggerCard')/* ,
-                    front.classList.remove('upCard') */), 750)
+    movingCard.classList.add('animate', 'biggerCard')
+    setTimeout(()=> movingCard.classList.remove('biggerCard') ||
+                    back.classList.remove('backUp'), 750)
     const { x, y, width, height } = openCard.getBoundingClientRect()
     assign(movingCard.style, {left: x-(vert? width/2.02 : width/80)+'px',
                               top: y-(vert? height/80 : height/2.02)+'px'})
@@ -76,6 +75,7 @@ const
   main = async ()=> {
     await loadCards()
     console.log('cards loaded')
+    // if (localStorage.progress)
   },
 
   loadCards = async ()=> {
