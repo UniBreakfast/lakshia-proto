@@ -20,7 +20,9 @@ openCard.upd = cards => {
 
 
 function flipCard(deck) {
-  const vert = innerWidth<innerHeight
+  const vert = innerWidth<innerHeight,
+      deckClass = ['goalSet', 'goalGet', 'circ', 'quote'][deck],
+      backClass = ['goalSetBack', 'goalGetBack', 'circBack', 'quoteBack'][deck]
   glass.classList.add('active')
   glass.append(movingCard)
   front.innerText = decks[deck].children[0].innerText
@@ -28,12 +30,14 @@ function flipCard(deck) {
   if (card.author)
     back.innerHTML = `"${card.text}"<p>- ${card.author} &nbsp;</p>`
   else back.innerText = card.text
+  front.classList.add(deckClass)
+  back.classList.add(backClass)
   movingCard.classList.remove('animate')
   cardWrap.classList.remove('flipped', 'animate')
   const { x, y } = decks[deck].children[0].getBoundingClientRect()
   assign(movingCard.style, {left: x+'px', top: y+'px'})
   setTimeout(() => {
-    back.classList.add('backUp')
+    back.classList.add('backUp', backClass)
     cardWrap.classList.add('flipped', 'animate')
     movingCard.classList.add('animate', 'biggerCard')
     setTimeout(()=> movingCard.classList.remove('biggerCard') ||
@@ -45,8 +49,10 @@ function flipCard(deck) {
       cardWrap.ontransitionend = null
       openCard.innerHTML = back.innerHTML
       off.append(movingCard)
-      openCard.classList.remove('hidden')
+      openCard.className = 'card bigCard '+backClass
       glass.classList.remove('active')
+      front.classList.remove(deckClass)
+      back.classList.remove(backClass)
       count[4] = Math.min(count[4]+1, 24)
       openCard.upd(count[4])
     }
@@ -94,7 +100,7 @@ const
     glass.classList = 'active'
     glass.append(ball)
     let last = random()*4|0
-    for (let i=9; i; --i) {
+    for (let i=5; i; --i) {
       do { var deck = random()*4|0 } while (deck==last || !texts[deck].length)
       if (i==1) ball.classList.add('disappear')
       await moveBall(last = deck)

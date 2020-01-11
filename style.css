@@ -44,6 +44,14 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   justify-content: center;
 }
 .card>p { align-self: flex-end }
+#goalSetDeck>div, .goalSet { background: #e7e962 }
+#goalGetDeck>div, .goalGet { background: #7de962 }
+#quoteDeck>div, .quote { background: #e9a662 }
+#circDeck>div, .circ { background: #f28f79 }
+.goalSetBack { background: #f2f3b8 }
+.goalGetBack { background: #beeeb2 }
+.quoteBack { background: #f0ceac }
+.circBack { background: #f3ccc3 }
 .bigCard {
   height: 26vh;
   width: 36.4vh;
@@ -89,14 +97,14 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   align-items: center;
   justify-content: center;
 }
-#line { width: 92vw }
+#line { width: 92vw; position: relative }
 #line, .arrow, .mark {
   height: 1.4vh;
   background: #000;
   border-radius: 99vw;
 }
 .arrow {
-  right: 4vw;
+  right: 0;
   width: 9vh;
   position: absolute;
   transform-origin: right;
@@ -217,7 +225,7 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
     width: 1.4vw;
   }
   .arrow {
-    bottom: 4vh;
+    bottom: 0;
     height: 9vw;
     width: 1.4vw;
     right: unset;
