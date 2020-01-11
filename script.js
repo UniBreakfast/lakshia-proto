@@ -1,4 +1,4 @@
-const { assign } = Object
+const { assign } = Object, { random } = Math
 
 const decks = [goalSetDeck, goalGetDeck, circDeck, quoteDeck]
 const texts = [[], [], [], [], []]
@@ -55,11 +55,12 @@ function flipCard(deck) {
 
 // simulation
 let count = [36, 36, 36, 36, 0]
-openCard.onclick =()=> {
+openCard.onclick = async ()=> {
   if (!Math.max(...count.slice(0,4))) return
-  do {
-    var deck = Math.random()*4|0
-  } while (!count[deck])
+  // do {
+  //   var deck = Math.random()*4|0
+  // } while (!count[deck])
+  const deck = await jump()
   decks[deck].upd(count[deck]? --count[deck] : 0)
   if (!count[deck]) setTimeout(()=> decks[deck].classList.add('hidden'), 0)
   flipCard(deck)
@@ -71,7 +72,41 @@ decks.forEach(deck => deck.onclick = i => {
   flipCard(i)
 })
 
+hit.volume = .04
+
 const
+  moveBall = async deck => {
+    const { x, y, width, height } = decks[deck].getBoundingClientRect(),
+          left = x + (random()*.6+.2)*width + 'px',
+          top = y + (random()*.6+.2)*height + 'px'
+    await Promise.all([
+      new Promise(end => {
+        assign(ball.style, {left, top})
+        ball.ontransitionend = end
+      }),
+      new Promise(end => {
+        glass.classList.add('rise')
+        glass.onanimationend =()=> glass.classList.remove('rise') || end()
+      })
+    ])
+  },
+  jump = async ()=> {
+    glass.classList = 'active'
+    glass.append(ball)
+    let last = random()*4|0
+    for (let i=9; i; --i) {
+      do { var deck = random()*4|0 } while (deck==last || !texts[deck].length)
+      if (i==1) ball.classList.add('disappear')
+      await moveBall(last = deck)
+      hit.currentTime = 0;
+      hit.play()
+    }
+    glass.classList = ''
+    off.append(ball)
+    ball.classList.remove('disappear')
+    return last
+  },
+  phases = [],
   main = async ()=> {
     await loadCards()
     console.log('cards loaded')
@@ -79,6 +114,7 @@ const
   },
 
   loadCards = async ()=> {
+    let id = 0
     const
       nl = lines => nl.is || (nl.is = lines.includes('\r\n')? '\r\n' : '\n'),
       getLines = arr => lines =>
@@ -97,8 +133,12 @@ const
     await Promise.all('goalSet, goalGet, circ, quote, reflect'.split(', ')
       .map((name, i) => fetch(`${i} ${name}.txt`).then(resp => resp.text())
         .then(process[i])))
+    texts.forEach(deck => deck.forEach(card => card.id = ++id))
   }
 
 main()
 
 console.log("https://unibreakfast.github.io/lakshia-proto/ or http://127.0.0.1:5500/")
+
+var {x,y,width,height} = circDeck.getBoundingClientRect()
+assign(ball.style, {left: x+width/2+'px', top: y+height/4+'px'})

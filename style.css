@@ -56,14 +56,7 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
 
 .animate, .animate>* {
   transition: all 1.5s ease-in-out;
-  /* animation: glow 2.5s infinite; */
 }
-/* @keyframes glow {
-  0% { box-shadow: none }
-  5% { box-shadow: 0 0 15px 5px yellow }
-  75% { box-shadow: 0 0 15px 3px yellow }
-  100% { box-shadow: none }
-} */
 
 #movingCard {
   position: absolute;
@@ -144,6 +137,13 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
 #glass:not(.active), #off {
   display: none;
 }
+.rise {
+  animation: rise .25s ease-out 2 alternate;
+}
+@keyframes rise {
+  to { transform: scale(1.5) }
+}
+
 .hidden { visibility: hidden }
 
 .message {
@@ -166,6 +166,27 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
 .land-top h3 {
   margin-bottom: 1vh;
 }
+
+#ball {
+  width: 7vmin;
+  height: 7vmin;
+  position: absolute;
+  border-radius: 50%;
+  background: black;
+  transition: all .5s ease-in-out;
+  transform: translate(-50%, -50%);
+}
+#ball:after {
+  color: white;
+  content: '.';
+  top: -9.5vmin;
+  left: 1.7vmin;
+  position: absolute;
+  font-size: 10vmin;
+  transition: all .5s;
+}
+#ball.disappear { width: 2vmin; height: 2vmin }
+#ball.disappear:after { color: #fff0 }
 
 @media (orientation: portrait) {
 
