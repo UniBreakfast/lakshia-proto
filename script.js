@@ -1,4 +1,5 @@
-const { assign } = Object, { random } = Math
+const { assign } = Object, { random } = Math, { parse, stringify } = JSON,
+c = console.log
 
 const decks = [goalSetDeck, goalGetDeck, circDeck, quoteDeck]
 const texts = [[], [], [], [], []]
@@ -60,7 +61,7 @@ function flipCard(deck) {
 }
 
 // simulation
-let count = [36, 36, 36, 36, 0]
+let count = [36, 36, 36, 36, 0], phase = 3
 openCard.onclick = async ()=> {
   if (!Math.max(...count.slice(0,4))) return
   // do {
@@ -81,6 +82,14 @@ decks.forEach(deck => deck.onclick = i => {
 hit.volume = .04
 
 const
+  save =()=> {
+    const pool = texts.map(deck => deck.map(card => card.id))
+    localStorage.progress = stringify({phase, goal, pool, history})
+    c('saved')
+  },
+  load =()=> {
+
+  },
   moveBall = async deck => {
     const { x, y, width, height } = decks[deck].getBoundingClientRect(),
           left = x + (random()*.6+.2)*width + 'px',
@@ -147,6 +156,3 @@ main()
 console.log(`http://127.0.0.1:5500/
 https://unibreakfast.github.io/lakshia-proto/
 https://github.com/UniBreakfast/lakshia-proto`)
-
-var {x,y,width,height} = circDeck.getBoundingClientRect()
-assign(ball.style, {left: x+width/2+'px', top: y+height/4+'px'})

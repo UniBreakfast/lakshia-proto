@@ -179,6 +179,8 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   width: 7vmin;
   height: 7vmin;
   position: absolute;
+  left: 15vmin;
+  bottom: 15vmin;
   border-radius: 50%;
   background: black;
   transition: all .5s ease-in-out;
