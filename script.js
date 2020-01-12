@@ -144,7 +144,9 @@ const
 
 main()
 
-console.log("https://unibreakfast.github.io/lakshia-proto/ or http://127.0.0.1:5500/")
+console.log(`http://127.0.0.1:5500/
+https://unibreakfast.github.io/lakshia-proto/
+https://github.com/UniBreakfast/lakshia-proto`)
 
 var {x,y,width,height} = circDeck.getBoundingClientRect()
 assign(ball.style, {left: x+width/2+'px', top: y+height/4+'px'})
