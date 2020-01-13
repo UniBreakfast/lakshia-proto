@@ -128,7 +128,11 @@ const
     ball.classList.remove('disappear')
     return last
   },
-  phases = [],
+  phases = [
+    async ()=> {
+
+    }
+  ],
   main = async ()=> {
     await loadCards()
     console.log('cards loaded')

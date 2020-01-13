@@ -16,6 +16,8 @@ body {
 h1,h2,h3,h4,h5,h6,p { margin: 0 }
 
 #goal { grid-area: goal }
+#goal:before { content: "🏆" }
+#goal:after { content: "✏️" }
 #goalSetDeck { grid-area: sdeck }
 #goalGetDeck { grid-area: gdeck }
 #quoteDeck { grid-area: qdeck }
@@ -151,7 +153,15 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
 #eta {
   transition: all 1s;
   background: #2cf507;
-  box-shadow: 0 0 2vmin 2vmin #2cf507;
+  box-shadow: 0 0 3vmin 3vmin #2cf507;
+}
+#eta:before {
+  content: "🏆";
+  left: -12vh;
+}
+#eta:after {
+  content: "🏁";
+  left: 12vh;
 }
 #past {
   height: 1.5vh;
@@ -160,6 +170,18 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   transition: box-shadow 1s;
   width: calc(var(--turn)*3.3vw);
   box-shadow: -6vw 0 2vw 8vw #ddda;
+}
+#past:before {
+  position: absolute;
+  content: "📅";
+  right: 0.2vw;
+  top: -8.5vh;
+}
+#past:after {
+  position: absolute;
+  content: "⏳";
+  right: 0.2vw;
+  top: 6.4vh;
 }
 
 #glass {
@@ -236,6 +258,7 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
                    "qdeck timeline  .  " 1fr
                    / 40%    20%    40%
   }
+  #goal { padding-left: 2vw;}
   .card {
     width: 29vw;
     height: 19vw;
@@ -291,10 +314,30 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
     text-align: right;
     transform: translate(-2.3vw, -3.7vw) rotate(-90deg);
   }
+  #eta:before {
+    left: unset;
+    top: -15vw;
+  }
+  #eta:after {
+    left: unset;
+    top: 15vw;
+  }
   #past {
     width: 1.5vw;
     height: calc(var(--turn)*3.3vh);
     box-shadow: 0 -6vh 2vh 8vh #ddda;
+  }
+  #past:before {
+    left: 8.4vw;
+    bottom: 0.3vh;
+    right: unset;
+    top: unset;
+  }
+  #past:after {
+    left: -9.7vw;
+    bottom: 0.3vh;
+    right: unset;
+    top: unset;
   }
 
   .port-left {
