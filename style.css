@@ -34,10 +34,10 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   display: flex;
   cursor: pointer;
   font-size: 1.7vh;
-  border: .2vmin solid;
-  background: white;
   text-align: center;
+  background: white;
   align-items: center;
+  border: .2vmin solid;
   border-radius: 4vmin;
   box-shadow: var(--hor);
   box-sizing: border-box;
@@ -176,27 +176,27 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
 }
 
 #ball {
+  left: 15vmin;
   width: 7vmin;
   height: 7vmin;
-  position: absolute;
-  left: 15vmin;
   bottom: 15vmin;
+  position: absolute;
   border-radius: 50%;
   background: black;
   transition: all .5s ease-in-out;
   transform: translate(-50%, -50%);
 }
-#ball:after {
-  color: white;
-  content: '.';
-  top: -9.5vmin;
-  left: 1.7vmin;
+#ball>div {
+  top: 0.5vmin;
+  left: 2.4vmin;
+  width: 1.5vmin;
+  height: 1.5vmin;
   position: absolute;
-  font-size: 10vmin;
+  border-radius: 50%;
+  background: white;
   transition: all .5s;
 }
-#ball.disappear { width: 2vmin; height: 2vmin }
-#ball.disappear:after { color: #fff0 }
+#ball.disappear { transform: scale(.3) }
 
 @media (orientation: portrait) {
 
