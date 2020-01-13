@@ -61,7 +61,7 @@ function flipCard(deck) {
 }
 
 // simulation
-let count = [36, 36, 36, 36, 0], phase = 0
+let count = [36, 36, 36, 36, 0], phase = 0, log = [random()*10|0]
 openCard.onclick = async ()=> {
   if (!Math.max(...count.slice(0,4))) return
   // do {
@@ -83,11 +83,17 @@ hit.volume = .04
 
 const
   save =()=> {
-    const pool = texts.map(deck => deck.map(card => card.id))
-    localStorage.progress = stringify({phase, goal, pool, history})
+    const pool = texts.flatMap(deck => deck.map(card => card.id)),
+          { innerText } = goal
+    localStorage.progress = stringify({phase, goal: {innerText}, pool, log})
     c('saved')
   },
   load =()=> {
+    const progress = parse(localStorage.progress)
+    !({ phase, log } = progress)
+    assign(goal, progress.goal)
+    texts.splice(0, 5,...texts.map(deck =>
+      deck.filter(card => progress.pool.includes(card.id))))
 
   },
   moveBall = async deck => {
@@ -110,7 +116,8 @@ const
     glass.append(ball)
     let last = random()*4|0
     for (let i=5; i; --i) {
-      do { var deck = random()*4|0 } while (deck==last || !texts[deck].length)
+      do { var deck = random()*4|0 }
+      while (/* deck==last || */ !texts[deck].length)
       if (i==1) ball.classList.add('disappear')
       await moveBall(last = deck)
       hit.currentTime = 0;

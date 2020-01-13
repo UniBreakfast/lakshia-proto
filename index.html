@@ -10,20 +10,21 @@
 </head>
 
 <body id="body">
-  <header id="goal" contenteditable oninput="clearTimeout(this.saving),this.saving=setTimeout(save,3e3)">Сформулированная игроком цель достигнуть чего-то, чего он собирается достигнуть в горизонте до года
+  <header id="goal" contenteditable oninput="clearTimeout(this.saving),this.saving=setTimeout(save,2e3)">Сформулированная игроком цель достигнуть чего-то, чего он собирается достигнуть в горизонте до года
   </header>
   <div id="openCard" class="card bigCard hidden">
     !!Текст карточки
   </div>
   <section id="timeline">
     <div id="line">
-      <div class="arrow"></div>
-      <div class="arrow"></div>
+      <div class="arrow"></div> <div class="arrow"></div>
+      <div id="eta" class="mark" style="--turn: 18"></div>
       <script>
         line.innerHTML += [...Array(24).keys()].reduce((html, i) =>
-          html + `<div class=mark style=--turn:${i} data-turn=${i + 1}
-            data-week=${(i + 1) * 2}></div>`, '')
+          html + `<div class=mark style=--turn:${i+1} data-turn=${i+1}
+            data-week=${(i+1)*2}></div>`, '')
       </script>
+      <div id="past"></div>
     </div>
 
   </section>
@@ -69,11 +70,8 @@
       <textarea id="taGoal"></textarea>
       <!-- <script> glass.append(setGoal) </script> -->
     </div>
-    <div id="ball" class="animate">
-      <div></div>
-      <!-- <script> glass.append(ball) || (glass.className = 'active rise') </script> -->
-
-    </div>
+    <div id="ball" class="animate"><div></div></div>
+    <!-- <script> glass.append(ball) || (glass.className = 'active rise') </script> -->
     <div id="bigCard" class="bigCard"></div>
   </div>
   <audio id=hit src="hit.mp3"></audio>
