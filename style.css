@@ -23,7 +23,6 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
 #openCard { grid-area: open }
 
 .deck {
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,7 +97,23 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   align-items: center;
   justify-content: center;
 }
-#line { width: 92vw; position: relative }
+#line:before {
+  bottom: 6vh;
+  right: 5.5vw;
+  content: "недели";
+  position: absolute;
+}
+#line:after {
+  top: 5.5vh;
+  right: 6vw;
+  content: "ходы";
+  position: absolute;
+}
+#line {
+  width: 92vw;
+  position: relative;
+  z-index: -1;
+}
 #line, .arrow, .mark {
   height: 1.4vh;
   background: #000;
@@ -235,6 +250,16 @@ h1,h2,h3,h4,h5,h6,p { margin: 0 }
   }
   .backUp {
     transform: rotateY(180deg) scale(1.1) rotateZ(90deg);
+  }
+  #line:before {
+    right: 2.5vw;
+    bottom: 7vh;
+  }
+  #line:after {
+    top: unset;
+    left: 3.2vh;
+    right: unset;
+    bottom: 7vh;
   }
   #line {
     height: 92vh;
