@@ -1,4 +1,5 @@
-# lakshia-proto
+# [lakshia-proto](https://github.com/UniBreakfast/lakshia-proto)
+
 ## Автор игры Лакшия - [Ольга Черкашина](https://t.me/Cholgaa)
 
 ![image](https://github.com/user-attachments/assets/155d93ba-e089-409c-a018-cc044249d340)
